@@ -1,20 +1,18 @@
 import ListItem from "./ListItem";
 import style from "./Workspace.module.css";
 import ListDeadline from "./ListDeadline";
-import Header from "../../components/Header";
-function Workspace() {
+function Workspace({list}) {
   return (
     <>
-    
     <div className={style.Container}>
       <div className={style.Workspaces}>
         <h1>YOUR WORKSPACES</h1>
         <section>
-          <ListItem/>
+          <ListItem list={list} />
         </section>
         <h1 className={style.AllDeadline}>ALL DEADLINES</h1>
         <section>
-          <ListDeadline/>
+          <ListDeadline list={list}/>
         </section>
       </div>
     </div>
