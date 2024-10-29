@@ -28,34 +28,14 @@ function App() {
       name: "Dennis Robin(3)",
     }
   ];
-  var projectName = "Project Name";
   const users = [
     {
       id: "001",
       name: "Alex",
       avatar: "../images/alex.jpg",
       color: "",
-    },
-    {
-      id: "002",
-      name: "Anna",
-      avatar: "../images/anna.jpg",
-      color: "",
-    },
-    {
-      id: "003",
-      name: "Thomas",
-      avatar: "../images/thomas.jpg",
-      color: "",
-    },
-    {
-      id: "004",
-      name: "Katty",
-      avatar: "../images/katty.jpg",
-      color: "",
-    },
-  ];
-
+    }
+  ]
   const boards = [
     {
       id: 1,
