@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Workspace from "./pages/Workspace";
 import { Routes, Route } from "react-router-dom";
-import Add from "./pages/Add"
+import Add from "./pages/Add";
 import Calendar from "./pages/Calendar";
 import Progress from "./pages/Progress";
 
@@ -26,7 +26,7 @@ function App() {
     {
       isHaveDeadline: false,
       name: "Dennis Robin(3)",
-    }
+    },
   ];
   const users = [
     {
@@ -34,8 +34,28 @@ function App() {
       name: "Alex",
       avatar: "../images/alex.jpg",
       color: "",
-    }
-  ]
+    },
+
+    {
+      id: "002",
+      name: "Anna",
+      avatar: "../images/anna.jpg",
+      color: "",
+    },
+    {
+      id: "003",
+      name: "Thomas",
+      avatar: "../images/thomas.jpg",
+      color: "",
+    },
+    {
+      id: "004",
+      name: "Katty",
+      avatar: "../images/katty.jpg",
+      color: "",
+    },
+  ];
+
   const boards = [
     {
       id: 1,
@@ -450,15 +470,15 @@ function App() {
     },
   ];
   return (
-      <>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Workspace list={deadline} />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="/add" element={<Add />} />
-          <Route path="/calendar" element={<Calendar />} />
-        </Routes>
-      </>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Workspace list={deadline} />} />
+        <Route path="/progress" element={<Progress />} />
+        <Route path="/add" element={<Add />} />
+        <Route path="/calendar" element={<Calendar />} />
+      </Routes>
+    </>
   );
 }
 
