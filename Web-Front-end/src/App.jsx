@@ -484,19 +484,24 @@ function App() {
         <Route path="/add" element={<Add />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route
-          path="/projectname"
+          path="/projectname/*"
           element={
             <>
               <AppBar projectName={projectName} users={users} />
-              <Dashboard
-                projectName={projectName}
-                boards={boards}
-                files={files}
-              ></Dashboard>
               <Routes>
-                <Route path="/meeting" element={<Meeting />}></Route>
                 <Route
-                  path="/filemanager"
+                  path=""
+                  element={
+                    <Dashboard
+                      projectName={projectName}
+                      boards={boards}
+                      files={files}
+                    ></Dashboard>
+                  }
+                />
+                <Route path="meeting" element={<Meeting />}></Route>
+                <Route
+                  path="filemanager"
                   element={<FileManager files={files} />}
                 ></Route>
               </Routes>

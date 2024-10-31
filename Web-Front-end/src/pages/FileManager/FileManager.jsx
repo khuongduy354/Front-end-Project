@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material';
-import React from 'react';
 import File from './Components/File';
+import PropTypes from 'prop-types';
 
 export default function FileManager(props) {
   return (
@@ -14,3 +14,7 @@ export default function FileManager(props) {
     </Stack>
   );
 }
+
+FileManager.propTypes = {
+  files: PropTypes.string,
+};

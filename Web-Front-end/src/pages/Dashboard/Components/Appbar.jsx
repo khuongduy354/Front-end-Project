@@ -9,15 +9,15 @@ export default function AppBar(props) {
     <div className="AppBar">
       <div className="LeftSide">
         <div className="ProjectTitle">
-          <Link to="./dashboard" className="ProjectName">
+          <Link to="" className="ProjectName">
             <h2>{props.projectName}</h2>
           </Link>
         </div>
         <div className="Others">
-          <Link to="./meeting" className="MeetLink">
+          <Link to="meeting" className="MeetLink">
             Meeting
           </Link>
-          <Link to="./filemanager" className="FileManager">
+          <Link to="filemanager" className="FileManager">
             FileManager
           </Link>
         </div>
