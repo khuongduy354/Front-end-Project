@@ -1,5 +1,5 @@
 :root {
-  font-family: "Roboto Flex", serif;
+  font-family: 'Roboto Flex', serif;
 }
 * {
   box-sizing: border-box;
@@ -15,4 +15,144 @@ body {
   font-size: 1.6rem;
 }
 
+/* CSS for dashboard section start from here */
 
+/* --------------------APP BAR COMPPONENT---------------------- */
+.AppBar {
+  background-color: rgba(236, 244, 214, 0.5);
+  height: 46px;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  justify-content: space-between;
+}
+
+.AppBar .LeftSide {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: start;
+}
+
+.AppBar .LeftSide .Others .MeetLink,
+.AppBar .LeftSide .Others .FileManager {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ProjectName {
+  text-decoration: none;
+  color: inherit;
+}
+
+.AvatarContainer,
+.Icon,
+.RightSide {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px; /* Khoảng cách giữa các avatar */
+}
+
+/* --------------------BOARD COMPONENT---------------------- */
+.Board {
+  background-color: transparent;
+}
+
+/* .Board h3 {
+  margin-left: 40px;
+} */
+
+.Board .Main {
+  gap: 40px;
+  display: flex;
+  /* flex-wrap: nowrap; */
+  overflow-x: auto;
+  margin-left: 70px;
+  align-items: flex-start;
+  /* cai nay fix bug loi scale height ne */
+}
+/* --------------------DASH BOARD COMPONENT---------------------- */
+.BoardSelect {
+  margin-left: 40px;
+  border: solid black 1px;
+}
+
+/* --------------------COLUMN COMPONENT---------------------- */
+
+.Column {
+  background-color: rgba(154, 208, 194, 0.1);
+  border-radius: 20px;
+  width: 228px;
+  min-width: 228px;
+  padding: 1.5rem;
+  /* min-height: 200px; */
+}
+
+.Column .Top .Title {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px black solid; */
+}
+
+.Column .Top .Main {
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  gap: 0px;
+  overflow: auto;
+  /* flex-grow: 1; not this one */
+}
+
+.Task {
+  /* border: black solid 1px; */
+  min-height: 50px;
+}
+
+/* --------------------FILE COMPONENT---------------------- */
+
+.File {
+  width: 201px;
+  height: 248px;
+  background-color: rgba(154, 208, 194, 0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.FileManager {
+  background-color: transparent;
+  margin-top: 20px;
+}
+
+.FileManager .Files {
+  margin-left: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.FileManager .Title {
+  margin-left: 40px;
+}
+
+/* --------------------MAIN---------------------- */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.main {
+  flex: 1;
+  background-color: rgba(154, 208, 194, 0.05);
+  /* opacity: 0.05; */
+}
+
+.main .filemanager {
+  background-color: transparent;
+}
