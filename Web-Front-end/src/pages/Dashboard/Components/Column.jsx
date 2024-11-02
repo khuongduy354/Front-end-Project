@@ -41,14 +41,17 @@ export default function Column(props) {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-
         /* dang dung theo thong so tren may, can dieu chinh lai */
       }} // not this one
     >
       <Stack className="Top">
         <Stack className="Title" direction="row">
-          <Input value={title} onChange={handleChange} />
-          <MoreIcon />
+          <Input
+            value={title}
+            onChange={handleChange}
+            sx={{ fontSize: '1.6rem' }}
+          />
+          <MoreIcon sx={{ fontSize: '2.4rem' }} />
         </Stack>
         <Stack
           className="Main"
@@ -75,18 +78,18 @@ export default function Column(props) {
         sx={{
           display: 'flex',
           justifyContent: 'space-between', // cho 2 cai icon nam o 2 ben
-          height: '24px',
+          height: '2.4rem',
           width: '100%',
           // border: 'solid black 1px',
           marginTop: '1.5rem', // not this one
         }}
       >
         <Button onClick={AddTask} title="add">
-          <AddIcon className="Icon" />
+          <AddIcon className="Icon" sx={{ fontSize: '2.4rem' }} />
         </Button>
 
         <Button onClick={props.delete} title="delete">
-          <DeleteIcon className="Icon" />
+          <DeleteIcon className="Icon" sx={{ fontSize: '2.4rem' }} />
         </Button>
       </Stack>
     </Stack>

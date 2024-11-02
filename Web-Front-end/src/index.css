@@ -20,7 +20,7 @@ body {
 /* --------------------APP BAR COMPPONENT---------------------- */
 .AppBar {
   background-color: rgba(236, 244, 214, 0.5);
-  height: 46px;
+  height: 4.6rem;
   display: flex;
   align-items: center;
   padding-left: 2rem;
@@ -53,7 +53,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 10px; /* Khoảng cách giữa các avatar */
+  gap: 1rem; /* Khoảng cách giữa các avatar */
 }
 
 /* --------------------BOARD COMPONENT---------------------- */
@@ -66,33 +66,33 @@ body {
 } */
 
 .Board .Main {
-  gap: 40px;
+  gap: 4rem;
   display: flex;
   /* flex-wrap: nowrap; */
   overflow-x: auto;
-  margin-left: 70px;
+  margin-left: 7rem;
   align-items: flex-start;
   /* cai nay fix bug loi scale height ne */
 }
 /* --------------------DASH BOARD COMPONENT---------------------- */
 .BoardSelect {
-  margin-left: 40px;
-  border: solid black 1px;
+  margin-left: 4rem;
+  border: solid black 0.1rem;
 }
 
 /* --------------------COLUMN COMPONENT---------------------- */
 
 .Column {
   background-color: rgba(154, 208, 194, 0.1);
-  border-radius: 20px;
-  width: 228px;
-  min-width: 228px;
+  border-radius: 2rem;
+  width: 22.8rem;
+  min-width: 22.8rem;
   padding: 1.5rem;
   /* min-height: 200px; */
 }
 
 .Column .Top .Title {
-  height: 30px;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -110,16 +110,35 @@ body {
 
 .Task {
   /* border: black solid 1px; */
-  min-height: 50px;
+  min-height: 5rem;
+}
+/* --------------------POP UP COMPONENT---------------------- */
+
+.PopUp {
+  left: 0;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+
+.popup-inner {
+  position: relative;
+  /* padding: 20rem; */
 }
 
 /* --------------------FILE COMPONENT---------------------- */
 
 .File {
-  width: 201px;
-  height: 248px;
+  width: 20.1rem;
+  height: 24.8rem;
   background-color: rgba(154, 208, 194, 0.3);
-  border-radius: 10px;
+  border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,18 +146,18 @@ body {
 
 .FileManager {
   background-color: transparent;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 .FileManager .Files {
-  margin-left: 70px;
+  margin-left: 7rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 2rem;
 }
 
 .FileManager .Title {
-  margin-left: 40px;
+  margin-left: 4rem;
 }
 
 /* --------------------MAIN---------------------- */

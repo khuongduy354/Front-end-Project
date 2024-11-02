@@ -9,10 +9,11 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import AppBar from './pages/Dashboard/Components/Appbar';
 import Meeting from './pages/Meeting/Meeting';
 import FileManager from './pages/FileManager/FileManager';
+import TaskOpen from './pages/Dashboard/Components/TaskOpen';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+// import ValidRoute from './checks/ValidRoute';
 
 function App() {
-  const projectName = 'Project Name';
-
   const deadline = [
     {
       isHaveDeadline: true,
@@ -27,7 +28,7 @@ function App() {
     {
       isHaveDeadline: true,
       time: '01-12-2024',
-      name: 'Dennis Robin',
+      name: 'DennisRobin',
     },
     {
       isHaveDeadline: false,
@@ -475,6 +476,18 @@ function App() {
       name: 'File mp4',
     },
   ];
+
+  // const tasks = [
+  //   {
+  //     id: 1,
+  //     description: 'doind somthing before this one',
+  //     comments: [],
+  //     members: [],
+  //     deadline: '21/06/2024',
+  //     attaches: [],
+  //     doFollow: false,
+  //   },
+  // ];
   return (
     <>
       <Header />
@@ -484,30 +497,29 @@ function App() {
         <Route path="/add" element={<Add />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route
-          path="/projectname/*"
+          path="/:projectName/*"
           element={
+            // <ValidRoute projectList={['Haha', 'Hihi', 'New project']}>
             <>
-              <AppBar projectName={projectName} users={users} />
+              <AppBar users={users} />
               <Routes>
                 <Route
                   path=""
-                  element={
-                    <Dashboard
-                      projectName={projectName}
-                      boards={boards}
-                      files={files}
-                    ></Dashboard>
-                  }
+                  element={<Dashboard boards={boards}></Dashboard>}
                 />
                 <Route path="meeting" element={<Meeting />}></Route>
                 <Route
                   path="filemanager"
                   element={<FileManager files={files} />}
                 ></Route>
+                <Route path="/:task" element={<TaskOpen />} />
               </Routes>
             </>
+
+            // </ValidRoute>
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
