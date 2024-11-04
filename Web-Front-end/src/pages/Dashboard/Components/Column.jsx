@@ -5,12 +5,22 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MoreIcon from '@mui/icons-material/MoreHoriz';
 import Task from './Task';
 import PropTypes from 'prop-types';
+import DeletePopUp from '../../../components/DeletePopUp/DeletePopUp';
 // import { DndProvider } from 'react-dnd';
 // import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export default function Column(props) {
   const [title, setTitle] = useState(props.title || 'New');
   const [tasks, setTasks] = useState(props.tasks || []);
+  const [openDeletePopUp, setOpenDeletePopUp] = useState(false);
+
+  const OpenDeletePopUp = () => {
+    setOpenDeletePopUp(true);
+  };
+
+  const CloseDeletePopUp = () => {
+    setOpenDeletePopUp(false);
+  };
 
   const handleChange = (event) => {
     setTitle(event.target.value);
@@ -88,12 +98,16 @@ export default function Column(props) {
           <AddIcon className="Icon" sx={{ fontSize: '2.4rem' }} />
         </Button>
 
-        <Button onClick={props.delete} title="delete">
+        <Button onClick={OpenDeletePopUp} title="delete">
           <DeleteIcon className="Icon" sx={{ fontSize: '2.4rem' }} />
         </Button>
       </Stack>
+      <DeletePopUp
+        open={openDeletePopUp}
+        onClose={CloseDeletePopUp}
+        onDelete={props.delete}
+      />
     </Stack>
-    // </DndProvider>
   );
 }
 
