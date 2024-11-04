@@ -12,7 +12,6 @@ export default function Dashboard({ boards }) {
   const handleChange = (e) => {
     setBoardID(e.target.value);
   };
-
   return (
     <div>
       <div className="main">
@@ -22,7 +21,7 @@ export default function Dashboard({ boards }) {
             onChange={handleChange}
             className="BoardSelect"
             sx={{
-              border: 'black solid 1px',
+              border: '',
               '& fieldset': { border: 'none' },
               fontSize: '1.6rem',
             }}

@@ -4,8 +4,8 @@
 
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import PopUp from '../../../components/Header/PopUp';
 import TaskOpen from './TaskOpen';
+import Modal from '@mui/material/Modal';
 
 export default function Task(task) {
   // const { taskId } = useParams();
@@ -20,6 +20,10 @@ export default function Task(task) {
     console.log('open pop up');
   };
 
+  const Close = () => {
+    setIsOpened(false);
+  };
+
   useEffect(() => {});
 
   return (
@@ -27,9 +31,23 @@ export default function Task(task) {
       <div className="Task" draggable onClick={OpenTask}>
         <h4>{task.title}</h4>
       </div>
-      <PopUp trigger={isOpened}>
-        <TaskOpen delete={task.delete} />
-      </PopUp>
+      <Modal
+        open={isOpened}
+        onClose={Close}
+        sx={{
+          height: '100vh',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <TaskOpen
+          delete={task.delete}
+          onClose={Close}
+          sx={{ position: 'relative' }}
+        />
+      </Modal>
     </>
   );
 }
