@@ -12,6 +12,14 @@ export default function Task(task) {
   // using taskId to get Info of one task
 
   const [isOpened, setIsOpened] = useState(false);
+  const [Title, setTitle] = useState('New task');
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const Save = () => {
+    console.log(Title);
+  };
   // const navigate = useNavigate();
   const OpenTask = () => {
     // <TaskOpen task = {task}/>
@@ -45,6 +53,8 @@ export default function Task(task) {
         <TaskOpen
           delete={task.delete}
           onClose={Close}
+          onSave={Save}
+          onChange={handleTitleChange}
           sx={{ position: 'relative' }}
         />
       </Modal>
