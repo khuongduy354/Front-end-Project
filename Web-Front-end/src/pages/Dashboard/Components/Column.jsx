@@ -1,4 +1,4 @@
-import { Button, Input, Stack } from '@mui/material';
+import { Button, Input, Modal, Stack } from '@mui/material';
 import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -6,6 +6,7 @@ import MoreIcon from '@mui/icons-material/MoreHoriz';
 import Task from './Task';
 import PropTypes from 'prop-types';
 import DeletePopUp from '../../../components/DeletePopUp/DeletePopUp';
+import TaskOpen from './TaskOpen';
 // import { DndProvider } from 'react-dnd';
 // import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -13,6 +14,8 @@ export default function Column(props) {
   const [title, setTitle] = useState(props.title || 'New');
   const [tasks, setTasks] = useState(props.tasks || []);
   const [openDeletePopUp, setOpenDeletePopUp] = useState(false);
+  const [openTaskPopUp, setOpenTaskPopUp] = useState(false);
+  const [tempTask, setTempTask] = useState('New task');
 
   const OpenDeletePopUp = () => {
     setOpenDeletePopUp(true);
@@ -22,8 +25,20 @@ export default function Column(props) {
     setOpenDeletePopUp(false);
   };
 
-  const handleChange = (event) => {
+  const OpenTaskPopUp = () => {
+    setOpenTaskPopUp(true);
+  };
+
+  const CloseTaskPopUp = () => {
+    setOpenTaskPopUp(false);
+  };
+
+  const handleTitleChange = (event) => {
     setTitle(event.target.value);
+  };
+
+  const handleTempTaskChange = (event) => {
+    setTempTask(event.target.value);
   };
 
   const AddTask = () => {
@@ -31,10 +46,11 @@ export default function Column(props) {
       ...preTasks,
       {
         id: preTasks.length + 1,
-        title: 'New',
+        title: tempTask,
       },
     ]);
     console.log(tasks);
+    setOpenTaskPopUp(false);
   };
 
   const DeleteTask = (id) => {
@@ -58,7 +74,7 @@ export default function Column(props) {
         <Stack className="Title" direction="row">
           <Input
             value={title}
-            onChange={handleChange}
+            onChange={handleTitleChange}
             sx={{ fontSize: '1.6rem' }}
           />
           <MoreIcon sx={{ fontSize: '2.4rem' }} />
@@ -94,7 +110,7 @@ export default function Column(props) {
           marginTop: '1.5rem', // not this one
         }}
       >
-        <Button onClick={AddTask} title="add">
+        <Button onClick={OpenTaskPopUp} title="add">
           <AddIcon className="Icon" sx={{ fontSize: '2.4rem' }} />
         </Button>
 
@@ -107,6 +123,23 @@ export default function Column(props) {
         onClose={CloseDeletePopUp}
         onDelete={props.delete}
       />
+      <Modal
+        open={openTaskPopUp}
+        onClose={CloseTaskPopUp}
+        sx={{
+          height: '100vh',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <TaskOpen
+          onClose={CloseTaskPopUp}
+          onSave={AddTask}
+          onChange={handleTempTaskChange}
+        />
+      </Modal>
     </Stack>
   );
 }

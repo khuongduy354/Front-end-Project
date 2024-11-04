@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   IconButton,
+  Input,
   Stack,
   TextField,
 } from '@mui/material';
@@ -16,9 +17,10 @@ import FollowIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeletePopUp from '../../../components/DeletePopUp/DeletePopUp';
 import CloseIcon from '@mui/icons-material/Close';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
-export default function TaskOpen(task) {
+const TaskOpen = forwardRef((task, ref) => {
   // const navigate = useNavigate();
   // const location = useLocation();
   const [openDelete, setOpenDelete] = useState(false);
@@ -31,7 +33,7 @@ export default function TaskOpen(task) {
     setOpenDelete(false);
   };
   return (
-    <div className="TaskOpen">
+    <div className="TaskOpen" ref={ref} tabIndex={-1}>
       <Box
         sx={{
           backgroundColor: 'white',
@@ -60,7 +62,7 @@ export default function TaskOpen(task) {
           }}
         >
           <Stack className="task-header" direction="row">
-            <h2>Update System</h2>
+            <Input onChange={task.onChange}>New task</Input>
           </Stack>
           <Stack
             className="task-body"
@@ -202,7 +204,28 @@ export default function TaskOpen(task) {
             </Stack>
           </Stack>
         </Stack>
+        <Button
+          onClick={task.onSave}
+          variant="contained"
+          sx={{
+            backgroundColor: '#2D9596',
+            position: 'absolute',
+            right: '4rem',
+            bottom: '4rem',
+          }}
+        >
+          Save
+        </Button>
       </Box>
     </div>
   );
-}
+});
+
+TaskOpen.propTypes = {
+  onClose: PropTypes.func,
+  onChange: PropTypes.func,
+  onSave: PropTypes.func,
+};
+TaskOpen.displayName = 'TaskOpen';
+
+export default TaskOpen;
