@@ -10,6 +10,10 @@ function UsernameInput({ value, onChange }) {
       <FormControl variant="outlined" fullWidth>
         <InputLabel htmlFor="outlined-username">Username</InputLabel>
         <OutlinedInput
+          sx={{
+            fontFamily: "Roboto Flex",
+            fontSize: "1.8rem",
+          }}
           type="username"
           id="username"
           value={value}

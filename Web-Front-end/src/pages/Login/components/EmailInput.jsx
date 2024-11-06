@@ -11,6 +11,10 @@ function EmailInput({ value, onChange, error }) {
       <FormControl variant="outlined" fullWidth error={error}>
         <InputLabel htmlFor="outlined-email">Email</InputLabel>
         <OutlinedInput
+          sx={{
+            fontFamily: "Roboto Flex",
+            fontSize: "1.8rem",
+          }}
           type="email"
           id="email"
           value={value}
