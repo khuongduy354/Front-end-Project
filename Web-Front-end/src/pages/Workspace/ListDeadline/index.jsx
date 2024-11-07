@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Deadline from "../Deadline";
 import { v4 as uuidv4 } from "uuid";
 

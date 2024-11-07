@@ -2,11 +2,19 @@ import "./App.css";
 import Header from "./components/Header";
 import Workspace from "./pages/Workspace";
 import { Routes, Route } from "react-router-dom";
-import Add from "./pages/Add"
+import Add from "./pages/Add";
 import Calendar from "./pages/Calendar";
 import Progress from "./pages/Progress";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import AppBar from "./pages/Dashboard/Components/Appbar";
+import Meeting from "./pages/Meeting/Meeting";
+import FileManager from "./pages/FileManager/FileManager";
+import LoginForm from "./pages/Login/LoginForm";
+import SignupForm from "./pages/Login/SignupForm";
 
 function App() {
+  const projectName = "Project Name";
+
   const deadline = [
     {
       isHaveDeadline: true,
@@ -26,9 +34,25 @@ function App() {
     {
       isHaveDeadline: false,
       name: "Dennis Robin(3)",
-    }
+    },
+    {
+      isHaveDeadline: true,
+      time: '01-12-2024',
+      name: 'Dennis Robin',
+    },
+    {
+      isHaveDeadline: false,
+      name: 'Dennis Robin(3)',
+    },
+    {
+      isHaveDeadline: false,
+      name: 'Dennis Robin(4)',
+    },
+    {
+      isHaveDeadline: false,
+      name: 'Dennis Robin(5)',
+    },
   ];
-  var projectName = "Project Name";
   const users = [
     {
       id: "001",
@@ -36,6 +60,7 @@ function App() {
       avatar: "../images/alex.jpg",
       color: "",
     },
+
     {
       id: "002",
       name: "Anna",
@@ -470,15 +495,37 @@ function App() {
     },
   ];
   return (
-      <>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Workspace list={deadline} />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="/add" element={<Add />} />
-          <Route path="/calendar" element={<Calendar />} />
-        </Routes>
-      </>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/workspace" element={<Workspace list={deadline} />} />
+        <Route path="/progress" element={<Progress />} />
+        <Route path="/add" element={<Add />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route
+          path="/projectname"
+          element={
+            <>
+              <AppBar projectName={projectName} users={users} />
+              <Dashboard
+                projectName={projectName}
+                boards={boards}
+                files={files}
+              ></Dashboard>
+              <Routes>
+                <Route path="/meeting" element={<Meeting />}></Route>
+                <Route
+                  path="/filemanager"
+                  element={<FileManager files={files} />}
+                ></Route>
+              </Routes>
+            </>
+          }
+        />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignupForm />} />
+      </Routes>
+    </>
   );
 }
 

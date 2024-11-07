@@ -11,7 +11,7 @@ function Header() {
           <nav className={style.Navigation}>
             <ul>
               <li>
-                <Link to="/">
+                <Link to="/workspace">
                   <p>WORKSPACE</p>
                 </Link>
               </li>
