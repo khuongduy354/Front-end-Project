@@ -23,7 +23,7 @@ function EmailInput({ value, onChange, error }) {
           label="Email"
         />
         {error && (
-          <FormHelperText sx={{ fontSize: "1rem" }}>
+          <FormHelperText sx={{ fontSize: "1.3rem" }}>
             Please enter a valid email.
           </FormHelperText>
         )}
