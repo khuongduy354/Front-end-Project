@@ -15,7 +15,7 @@ const Item = ({ name }) => {
   );
 };
 Item.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 };
 
 export default Item;

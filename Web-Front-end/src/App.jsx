@@ -2,9 +2,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Workspace from "./pages/Workspace";
 import { Routes, Route } from "react-router-dom";
-import Add from "./pages/Add";
 import Calendar from "./pages/Calendar";
-import Progress from "./pages/Progress";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import AppBar from "./pages/Dashboard/Components/Appbar";
 import Meeting from "./pages/Meeting/Meeting";
@@ -34,23 +32,6 @@ function App() {
     {
       isHaveDeadline: false,
       name: "Dennis Robin(3)",
-    },
-    {
-      isHaveDeadline: true,
-      time: '01-12-2024',
-      name: 'Dennis Robin',
-    },
-    {
-      isHaveDeadline: false,
-      name: 'Dennis Robin(3)',
-    },
-    {
-      isHaveDeadline: false,
-      name: 'Dennis Robin(4)',
-    },
-    {
-      isHaveDeadline: false,
-      name: 'Dennis Robin(5)',
     },
   ];
   const users = [
@@ -498,9 +479,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/workspace" element={<Workspace list={deadline} />} />
-        <Route path="/progress" element={<Progress />} />
-        <Route path="/add" element={<Add />} />
+        <Route path="/" element={<Workspace list={deadline} />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route
           path="/projectname"

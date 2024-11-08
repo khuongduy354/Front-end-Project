@@ -11,18 +11,8 @@ function Header() {
           <nav className={style.Navigation}>
             <ul>
               <li>
-                <Link to="/workspace">
+                <Link to="/">
                   <p>WORKSPACE</p>
-                </Link>
-              </li>
-              <li>
-                <Link to="/progress">
-                  <p>PROGRESS</p>
-                </Link>
-              </li>
-              <li>
-                <Link to="/add">
-                  <p>ADD</p>
                 </Link>
               </li>
               <li>
