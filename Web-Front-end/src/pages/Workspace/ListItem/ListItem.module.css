@@ -1,13 +1,18 @@
 .Listitem {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     gap: 16px;
     background: hsla(163, 36%, 71%, 0.288);
     height: 295px;
     padding-bottom: 7px;
     overflow-x: auto;
     border-radius: 3px;
+    flex-wrap: wrap;
 }
+
 .Listitem li {
-    display: flex;
+    flex: calc(22% - 10px);
+    margin-top: 5px;
+    margin-bottom: 10px;
 }

@@ -27,11 +27,25 @@ function App() {
     {
       isHaveDeadline: true,
       time: "01-12-2024",
-      name: "Dennis Robin",
+      name: "Nhập môn mạng",
     },
     {
       isHaveDeadline: false,
-      name: "Dennis Robin(3)",
+      name: "Trường đại học công nghệ thông tin - Đại học quốc gia thành phố Hồ Chí Minh",
+    },
+    {
+      isHaveDeadline: false,
+      name: "Khoa Công nghệ phần mềm - Trường đại học công nghệ thông tin",
+    },
+    {
+      isHaveDeadline: true,
+      time: "01-12-2024",
+      name: "Khoa Hệ thống thông tin - Trường đại học công nghệ thông tin",
+    },
+    {
+      isHaveDeadline: true,
+      time: "20-11-2024",
+      name: "Khoa Mạng máy tính và truyền thông - Trường đại học công nghệ thông tin",
     },
   ];
   const users = [
