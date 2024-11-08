@@ -1,6 +1,7 @@
 import ListItem from "./ListItem";
 import style from "./Workspace.module.css";
 import ListDeadline from "./ListDeadline";
+
 // eslint-disable-next-line react/prop-types
 function Workspace({list}) {
   return (
@@ -11,7 +12,7 @@ function Workspace({list}) {
         <section>
           <ListItem list={list} />
         </section>
-        <h1 className={style.AllDeadline}>ALL DEADLINES</h1>
+        <h1 className={style.AllDeadline}>DEADLINES</h1>
         <section>
           <ListDeadline list={list}/>
         </section>
