@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import style from "./Header.module.css";
-
 function Header() {
   return (
     <>
@@ -30,7 +29,9 @@ function Header() {
               <i className="fa-regular fa-bell"></i>
             </div>
             <div className={style.Account}>
-              <p>M</p>
+              <Link to={"/login"} >
+                <p>M</p>
+              </Link>
             </div>
           </div>
         </header>
