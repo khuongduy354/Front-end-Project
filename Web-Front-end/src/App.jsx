@@ -9,6 +9,8 @@ import Meeting from "./pages/Meeting/Meeting";
 import FileManager from "./pages/FileManager/FileManager";
 import LoginForm from "./pages/Login/LoginForm";
 import SignupForm from "./pages/Login/SignupForm";
+import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
+import { useState } from "react";
 
 function App() {
   const projectName = "Project Name";
@@ -496,36 +498,58 @@ function App() {
       name: "File mp4",
     },
   ];
+
+  const [toggleDarkMode, setToggleDarkMode] = useState(true);
+
+  const toggleDarkTheme = () => {
+    setToggleDarkMode(!toggleDarkMode);
+  };
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: toggleDarkMode ? "dark" : "light", // handle the dark mode state on toggle
+      primary: {
+        main: "#2D9596",
+      },
+      secondary: {
+        main: "#131052",
+      },
+    },
+  });
+
   return (
     <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Workspace list={deadline} />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route
-          path="/projectname"
-          element={
-            <>
-              <AppBar projectName={projectName} users={users} />
-              <Dashboard
-                projectName={projectName}
-                boards={boards}
-                files={files}
-              ></Dashboard>
-              <Routes>
-                <Route path="/meeting" element={<Meeting />}></Route>
-                <Route
-                  path="/filemanager"
-                  element={<FileManager files={files} />}
-                ></Route>
-              </Routes>
-            </>
-          }
-        />
-        <Route path="/:name" />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignupForm />} />
-      </Routes>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Header checked={toggleDarkMode} onChange={toggleDarkTheme} />
+        <Routes>
+          <Route path="/" element={<Workspace list={deadline} />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route
+            path="/projectname"
+            element={
+              <>
+                <AppBar projectName={projectName} users={users} />
+                <Dashboard
+                  projectName={projectName}
+                  boards={boards}
+                  files={files}
+                ></Dashboard>
+                <Routes>
+                  <Route path="/meeting" element={<Meeting />}></Route>
+                  <Route
+                    path="/filemanager"
+                    element={<FileManager files={files} />}
+                  ></Route>
+                </Routes>
+              </>
+            }
+          />
+          <Route path="/:name" />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/signup" element={<SignupForm />} />
+        </Routes>
+      </ThemeProvider>
     </>
   );
 }

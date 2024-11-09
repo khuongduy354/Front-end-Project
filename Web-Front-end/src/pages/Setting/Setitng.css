@@ -1,0 +1,8 @@
+Button {
+    font-size: 1.5rem!important;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    color: #fff!important;
+    max-width: 10px;
+}
