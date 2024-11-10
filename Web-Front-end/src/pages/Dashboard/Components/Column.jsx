@@ -1,4 +1,4 @@
-import { Button, Input, Modal, Stack } from '@mui/material';
+import { Button, Input, Stack } from '@mui/material';
 import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -6,7 +6,7 @@ import MoreIcon from '@mui/icons-material/MoreHoriz';
 import Task from './Task';
 import PropTypes from 'prop-types';
 import DeletePopUp from '../../../components/DeletePopUp/DeletePopUp';
-import TaskOpen from './TaskOpen';
+import AddNewTask from './AddNewTask';
 // import { DndProvider } from 'react-dnd';
 // import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -15,7 +15,7 @@ export default function Column(props) {
   const [tasks, setTasks] = useState(props.tasks || []);
   const [openDeletePopUp, setOpenDeletePopUp] = useState(false);
   const [openTaskPopUp, setOpenTaskPopUp] = useState(false);
-  const [tempTask, setTempTask] = useState('New task');
+  const [tempTask, setTempTask] = useState('');
 
   const OpenDeletePopUp = () => {
     setOpenDeletePopUp(true);
@@ -42,14 +42,18 @@ export default function Column(props) {
   };
 
   const AddTask = () => {
-    setTasks((preTasks) => [
-      ...preTasks,
-      {
-        id: preTasks.length + 1,
-        title: tempTask,
-      },
-    ]);
-    console.log(tasks);
+    if (tempTask != '') {
+      setTasks((preTasks) => [
+        ...preTasks,
+        {
+          id: preTasks.length + 1,
+          title: tempTask,
+        },
+      ]);
+      // console.log(tasks);
+      setTempTask('');
+    }
+    // else pop up sth like "make a new task unsuccess cause of null error"
     setOpenTaskPopUp(false);
   };
 
@@ -123,23 +127,12 @@ export default function Column(props) {
         onClose={CloseDeletePopUp}
         onDelete={props.delete}
       />
-      <Modal
+      <AddNewTask
         open={openTaskPopUp}
         onClose={CloseTaskPopUp}
-        sx={{
-          height: '100vh',
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <TaskOpen
-          onClose={CloseTaskPopUp}
-          onSave={AddTask}
-          onChange={handleTempTaskChange}
-        />
-      </Modal>
+        onSave={AddTask}
+        onChange={handleTempTaskChange}
+      />
     </Stack>
   );
 }
