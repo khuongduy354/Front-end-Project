@@ -2,7 +2,6 @@ import './App.css';
 import Header from './components/Header';
 import Workspace from './pages/Workspace';
 import { Routes, Route } from 'react-router-dom';
-import Add from './pages/Add';
 import Calendar from './pages/Calendar';
 import Progress from './pages/Progress';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -524,7 +523,7 @@ function App() {
 
   const darkTheme = createTheme({
     palette: {
-      mode: toggleDarkMode ? 'dark' : 'light', // handle the dark mode state on toggle
+      mode: toggleDarkMode ? 'dark' : 'light', 
       primary: {
         main: '#2D9596',
       },
@@ -546,7 +545,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Workspace list={deadline} />} />
           <Route path="/progress" element={<Progress />} />
-          <Route path="/add" element={<Add />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route
             path="/:projectName/*"
