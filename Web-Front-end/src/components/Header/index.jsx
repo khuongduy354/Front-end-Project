@@ -42,9 +42,7 @@ function Header({ checked, onChange }) {
             <i className="fa-regular fa-bell"></i>
           </Button>
           <div className={style.Account}>
-            <Link to={"/login"}>
-              <p>M</p>
-            </Link>
+            <p>M</p>
           </div>
         </div>
       </header>
