@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import style from "./Deadline.module.css";
 
 function Deadline({ name, time }) {

@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const ListItem = ({ list }) => {
   let countDeadline = 0;
+
   return (
     <div>
       <ul>
@@ -13,7 +14,10 @@ const ListItem = ({ list }) => {
             if (item.isHaveDeadline && countDeadline <= 3) {
               return (
                 <li key={uuidv4()}>
-                  <Deadline name={item.name} time={item.time} />
+                  <Deadline
+                    name={item.name}
+                    time={item.time}
+                  />
                 </li>
               );
             }
