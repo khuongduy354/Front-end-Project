@@ -46,8 +46,8 @@ export default function Board(props) {
           sx={{
             backgroundColor: 'rgba(235, 244, 214, 0.5)',
             color: 'black',
-            height: '30px',
-            width: '200px',
+            height: '3rem',
+            width: '20rem',
           }}
           onClick={AddColumn}
         >

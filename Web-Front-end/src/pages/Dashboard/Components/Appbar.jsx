@@ -1,23 +1,24 @@
 import { Avatar } from '@mui/material';
 import ShareIcon from '@mui/icons-material/ShareOutlined';
 import MoreIcon from '@mui/icons-material/MoreHoriz';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default function AppBar(props) {
+  const { projectName } = useParams();
   return (
     <div className="AppBar">
       <div className="LeftSide">
         <div className="ProjectTitle">
-          <Link to="./dashboard" className="ProjectName">
-            <h2>{props.projectName}</h2>
+          <Link to="" className="ProjectName">
+            <h2>{projectName}</h2>
           </Link>
         </div>
         <div className="Others">
-          <Link to="./meeting" className="MeetLink">
+          <Link to="meeting" className="MeetLink">
             Meeting
           </Link>
-          <Link to="./filemanager" className="FileManager">
+          <Link to="filemanager" className="FileManager">
             FileManager
           </Link>
         </div>
@@ -30,14 +31,14 @@ export default function AppBar(props) {
                 key={user.id}
                 alt={user.name}
                 src={user.avatar}
-                sx={{ width: 28, height: 28 }}
+                sx={{ width: '2.8rem', height: '2.8rem' }}
               ></Avatar>
             );
           })}
         </div>
         <div className="Icon">
-          <ShareIcon />
-          <MoreIcon />
+          <ShareIcon sx={{ fontSize: '2.4rem' }} />
+          <MoreIcon sx={{ fontSize: '2.4rem' }} />
         </div>
       </div>
     </div>
@@ -45,6 +46,5 @@ export default function AppBar(props) {
 }
 
 AppBar.propTypes = {
-  projectName: PropTypes.string,
   users: PropTypes.array,
 };
