@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";

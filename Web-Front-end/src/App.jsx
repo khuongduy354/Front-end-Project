@@ -11,7 +11,6 @@ import LoginForm from "./pages/Login/LoginForm";
 import SignupForm from "./pages/Login/SignupForm";
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
 import { useState } from "react";
-
 function App() {
   const projectName = "Project Name";
 
@@ -499,15 +498,14 @@ function App() {
     },
   ];
 
-  const [toggleDarkMode, setToggleDarkMode] = useState(true);
+  const [toggleDarkMode, setToggleDarkMode] = useState(false);
 
   const toggleDarkTheme = () => {
     setToggleDarkMode(!toggleDarkMode);
   };
-
   const darkTheme = createTheme({
     palette: {
-      mode: toggleDarkMode ? "dark" : "light", // handle the dark mode state on toggle
+      mode: toggleDarkMode ? "dark" : "light",
       primary: {
         main: "#2D9596",
       },
@@ -516,12 +514,16 @@ function App() {
       },
     },
   });
-
   return (
     <>
+      <Routes>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignupForm />} />
+      </Routes>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Header checked={toggleDarkMode} onChange={toggleDarkTheme} />
+
         <Routes>
           <Route path="/" element={<Workspace list={deadline} />} />
           <Route path="/calendar" element={<Calendar />} />
@@ -546,8 +548,6 @@ function App() {
             }
           />
           <Route path="/:name" />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignupForm />} />
         </Routes>
       </ThemeProvider>
     </>

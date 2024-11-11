@@ -7,6 +7,7 @@ const ListItem = ({ list }) => {
   return (
     
     <div>
+      
       <ul className={style.Listitem}>
         {list.map((item) => (
           <li key={uuidv4()} >
