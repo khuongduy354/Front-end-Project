@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./components/Header";
 import Workspace from "./pages/Workspace";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import Add from "./pages/Add";
 import Calendar from "./pages/Calendar";
 import Progress from "./pages/Progress";
@@ -477,36 +477,44 @@ function App() {
       name: "File mp4",
     },
   ];
+
+  const ProtectedRoute = () => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    return isLoggedIn ? <Outlet /> : <Navigate to="/login" repalce />;
+  };
+
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Workspace list={deadline} />} />
-        <Route path="/progress" element={<Progress />} />
-        <Route path="/add" element={<Add />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route
-          path="/projectname"
-          element={
-            <>
-              <AppBar projectName={projectName} users={users} />
-              <Dashboard
-                projectName={projectName}
-                boards={boards}
-                files={files}
-              ></Dashboard>
-              <Routes>
-                <Route path="/meeting" element={<Meeting />}></Route>
-                <Route
-                  path="/filemanager"
-                  element={<FileManager files={files} />}
-                ></Route>
-              </Routes>
-            </>
-          }
-        />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<Workspace list={deadline} />} />
+          <Route path="/progress" element={<Progress />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route
+            path="/projectname"
+            element={
+              <>
+                <AppBar projectName={projectName} users={users} />
+                <Dashboard
+                  projectName={projectName}
+                  boards={boards}
+                  files={files}
+                ></Dashboard>
+                <Routes>
+                  <Route path="/meeting" element={<Meeting />}></Route>
+                  <Route
+                    path="/filemanager"
+                    element={<FileManager files={files} />}
+                  ></Route>
+                </Routes>
+              </>
+            }
+          />
+        </Route>
       </Routes>
     </>
   );

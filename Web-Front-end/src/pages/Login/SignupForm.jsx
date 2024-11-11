@@ -34,6 +34,7 @@ function SignupForm() {
     console.log("Username: ", username);
     console.log("Email: ", email);
     console.log("Password: ", password);
+    localStorage.setItem("isLoggedIn", "true");
     navigate("/");
   };
 

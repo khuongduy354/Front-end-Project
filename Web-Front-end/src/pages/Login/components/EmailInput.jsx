@@ -17,10 +17,12 @@ function EmailInput({ value, onChange, error }) {
           }}
           type="email"
           id="email"
+          label="email"
+          title="email"
+          placeholder="Enter your email"
           value={value}
           onChange={onChange}
           required
-          label="Email"
         />
         {error && (
           <FormHelperText sx={{ fontSize: "1.3rem" }}>

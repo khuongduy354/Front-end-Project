@@ -8,7 +8,7 @@ import "./components/form.css";
 function LoginForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState("");
 
   const validateEmail = (email) => {
@@ -30,6 +30,7 @@ function LoginForm() {
 
     console.log("Email: ", email);
     console.log("Password: ", password);
+    localStorage.setItem("isLoggedIn", "true");
     navigate("/");
   };
 

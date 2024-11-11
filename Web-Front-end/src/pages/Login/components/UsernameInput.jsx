@@ -16,10 +16,12 @@ function UsernameInput({ value, onChange }) {
           }}
           type="username"
           id="username"
+          label="username"
+          title="username"
+          placeholder="Enter your username"
           value={value}
           onChange={onChange}
           required
-          label="Username"
         />
       </FormControl>
     </div>
