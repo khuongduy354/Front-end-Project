@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import style from "./Header.module.css";
-
-function Header() {
+import Setting from "../../pages/Setting/Setting";
+import { Button } from "@mui/material";
+function Header({checked, onChange}) {
   return (
     <>
         <header className={style.Header}>
@@ -16,16 +18,6 @@ function Header() {
                 </Link>
               </li>
               <li>
-                <Link to="/progress">
-                  <p>PROGRESS</p>
-                </Link>
-              </li>
-              <li>
-                <Link to="/add">
-                  <p>ADD</p>
-                </Link>
-              </li>
-              <li>
                 <Link to="/calendar">
                   <p>CALENDAR</p>
                 </Link>
@@ -34,13 +26,15 @@ function Header() {
           </nav>
           <div className={style.Tools}>
             <div className={style.Setting}>
-              <i className="fa-solid fa-gear"></i>
+            <Setting checked={checked} onChange={onChange} />
             </div>
-            <div className={style.Notifications}>
-              <i className="fa-regular fa-bell"></i>
-            </div>
+            <Button className={style.Notifications}>
+              <i className="fa-regular fa-bell" ></i>
+            </Button>
             <div className={style.Account}>
-              <p>M</p>
+              <Link to={"/login"} >
+                <p>M</p>
+              </Link>
             </div>
           </div>
         </header>

@@ -13,26 +13,53 @@ import TaskOpen from './pages/Dashboard/Components/TaskOpen';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 // import ValidRoute from './checks/ValidRoute';
 
+import './App.css';
+import LoginForm from './pages/Login/LoginForm';
+import SignupForm from './pages/Login/SignupForm';
+import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { useState } from 'react';
+
 function App() {
   const deadline = [
     {
+      img: '../image/img1.jfif',
       isHaveDeadline: true,
       time: '29-10-2024',
       name: 'Lap trinh truc quan',
     },
     {
+      img: '../image/img2.jfif',
       isHaveDeadline: true,
       time: '28-10-2024',
       name: 'Dennis Robin(1) Dennis Robin(2) Dennis Robin(3)',
     },
     {
+      img: '../image/img4.jfif',
       isHaveDeadline: true,
       time: '01-12-2024',
-      name: 'DennisRobin',
+      name: 'Nhập môn mạng',
     },
     {
+      img: '../image/img5.jfif',
       isHaveDeadline: false,
-      name: 'Dennis Robin(3)',
+      name: 'Trường đại học công nghệ thông tin - Đại học quốc gia thành phố Hồ Chí Minh',
+    },
+    {
+      img: '../image/img5.jfif',
+      isHaveDeadline: false,
+      name: 'Khoa Công nghệ phần mềm - Trường đại học công nghệ thông tin',
+    },
+    {
+      img: '../image/img5.jfif',
+      isHaveDeadline: true,
+      time: '01-12-2024',
+      name: 'Khoa Hệ thống thông tin - Trường đại học công nghệ thông tin',
+    },
+    {
+      img: '../image/img5.jfif',
+      isHaveDeadline: true,
+      time: '20-11-2024',
+      name: 'Khoa Mạng máy tính và truyền thông - Trường đại học công nghệ thông tin',
     },
   ];
   const users = [
@@ -488,39 +515,63 @@ function App() {
   //     doFollow: false,
   //   },
   // ];
+
+  const [toggleDarkMode, setToggleDarkMode] = useState(true);
+
+  const toggleDarkTheme = () => {
+    setToggleDarkMode(!toggleDarkMode);
+  };
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: toggleDarkMode ? 'dark' : 'light', // handle the dark mode state on toggle
+      primary: {
+        main: '#2D9596',
+      },
+      secondary: {
+        main: '#131052',
+      },
+    },
+  });
+
   return (
     <>
-      <Header />
       <Routes>
-        <Route path="/" element={<Workspace list={deadline} />} />
-        <Route path="/progress" element={<Progress />} />
-        <Route path="/add" element={<Add />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route
-          path="/:projectName/*"
-          element={
-            // <ValidRoute projectList={['Haha', 'Hihi', 'New project']}>
-            <>
-              <AppBar users={users} />
-              <Routes>
-                <Route
-                  path=""
-                  element={<Dashboard boards={boards}></Dashboard>}
-                />
-                <Route path="meeting" element={<Meeting />}></Route>
-                <Route
-                  path="filemanager"
-                  element={<FileManager files={files} />}
-                ></Route>
-                <Route path="/:task" element={<TaskOpen />} />
-              </Routes>
-            </>
-
-            // </ValidRoute>
-          }
-        />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignupForm />} />
       </Routes>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Header checked={toggleDarkMode} onChange={toggleDarkTheme} />
+        <Routes>
+          <Route path="/" element={<Workspace list={deadline} />} />
+          <Route path="/progress" element={<Progress />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route
+            path="/:projectName/*"
+            element={
+              <>
+                <AppBar users={users} />
+                <Routes>
+                  <Route
+                    path=""
+                    element={<Dashboard boards={boards}></Dashboard>}
+                  />
+                  <Route path="meeting" element={<Meeting />}></Route>
+                  <Route
+                    path="filemanager"
+                    element={<FileManager files={files} />}
+                  ></Route>
+                  <Route path="/:task" element={<TaskOpen />} />
+                </Routes>
+              </>
+            }
+          />
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/:name" />
+        </Routes>
+      </ThemeProvider>
     </>
   );
 }
