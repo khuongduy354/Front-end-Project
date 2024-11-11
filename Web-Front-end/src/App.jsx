@@ -3,16 +3,12 @@ import Header from './components/Header';
 import Workspace from './pages/Workspace';
 import { Routes, Route } from 'react-router-dom';
 import Calendar from './pages/Calendar';
-import Progress from './pages/Progress';
 import Dashboard from './pages/Dashboard/Dashboard';
 import AppBar from './pages/Dashboard/Components/Appbar';
 import Meeting from './pages/Meeting/Meeting';
 import FileManager from './pages/FileManager/FileManager';
 import TaskOpen from './pages/Dashboard/Components/TaskOpen';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-// import ValidRoute from './checks/ValidRoute';
-
-import './App.css';
 import LoginForm from './pages/Login/LoginForm';
 import SignupForm from './pages/Login/SignupForm';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
@@ -503,6 +499,7 @@ function App() {
     },
   ];
 
+  const [toggleDarkMode, setToggleDarkMode] = useState(false);
   // const tasks = [
   //   {
   //     id: 1,
@@ -514,16 +511,12 @@ function App() {
   //     doFollow: false,
   //   },
   // ];
-
-  const [toggleDarkMode, setToggleDarkMode] = useState(true);
-
   const toggleDarkTheme = () => {
     setToggleDarkMode(!toggleDarkMode);
   };
-
   const darkTheme = createTheme({
     palette: {
-      mode: toggleDarkMode ? 'dark' : 'light', 
+      mode: toggleDarkMode ? "dark" : "light",
       primary: {
         main: '#2D9596',
       },
@@ -532,7 +525,6 @@ function App() {
       },
     },
   });
-
   return (
     <>
       <Routes>
@@ -542,9 +534,9 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Header checked={toggleDarkMode} onChange={toggleDarkTheme} />
+
         <Routes>
           <Route path="/" element={<Workspace list={deadline} />} />
-          <Route path="/progress" element={<Progress />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route
             path="/:projectName/*"

@@ -7,10 +7,11 @@ const ListItem = ({ list }) => {
   return (
     
     <div>
+      
       <ul className={style.Listitem}>
         {list.map((item) => (
           <li key={uuidv4()} >
-            <Link to={"/projectname"} className={style.link}>
+            <Link to={"/:projectName/*"} className={style.link}>
               <Item name={item.name} img={item.img} />
             </Link>
           </li>

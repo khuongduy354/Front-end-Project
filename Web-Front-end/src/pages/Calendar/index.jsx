@@ -110,23 +110,23 @@ export default function Calendar() {
     return () => requestAbortController.current?.abort();
   }, []);
 
-  const handleMonthChange = (date) => {
-    if (requestAbortController.current) {
-      // Hủy bỏ yêu cầu không cần thiết nếu người dùng chuyển tháng nhanh chóng
-      requestAbortController.current.abort();
-    }
+// {  const handleMonthChange = (date) => {
+//     if (requestAbortController.current) {
+//       // Hủy bỏ yêu cầu không cần thiết nếu người dùng chuyển tháng nhanh chóng
+//       requestAbortController.current.abort();
+//     }
 
-    setIsLoading(true);
-    setHighlightedDays([]);
-    fetchHighlightedDays(date);
-  };
+//     setIsLoading(true);
+//     setHighlightedDays([]);
+//     fetchHighlightedDays(date);
+//   };}
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
         defaultValue={initialValue}
         loading={isLoading}
-        onMonthChange={handleMonthChange}
+        //onMonthChange={handleMonthChange}
         renderLoading={() => <DayCalendarSkeleton />}
         slots={{
           day: ServerDay,

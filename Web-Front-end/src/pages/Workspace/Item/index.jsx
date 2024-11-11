@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import style from "./Item.module.css";
-
 const Item = ({ name, img }) => {
+ 
   return (
     <div className={style.Item}>
-      <div className={style.GroupImg}>
+      <div className={style.GroupImg} >
         <img src={img} alt={name} />
       </div>
       <div className={style.GroupName}>
@@ -13,6 +13,5 @@ const Item = ({ name, img }) => {
     </div>
   );
 };
-
 
 export default Item;

@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import "./Setitng.css";
 import { Switch } from "@mui/material";
 
 const style = {
@@ -12,9 +11,11 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  minWidth: 500,
+  minHeight: 200,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "1px solid #666",
+  borderRadius: "3px",
   boxShadow: 24,
   p: 4,
 };
@@ -26,7 +27,18 @@ export default function Setting({ checked, onChange }) {
 
   return (
     <div>
-      <Button onClick={handleOpen} style={{ minWidth: "0px" }}>
+      <Button
+        onClick={handleOpen}
+        style={{
+          minWidth: "0px",
+          fontSize: "1.5rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#fff",
+          maxWidth: "10px",
+        }}
+      >
         <i
           className="fa-solid fa-gear iconSetting"
           style={{ color: "#fff" }}
@@ -43,17 +55,18 @@ export default function Setting({ checked, onChange }) {
             <div
               style={{
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
               }}
             >
-              <h2>Dark mode:</h2>
-              <Switch checked={checked} onChange={onChange} />
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "30px"
+              }}>
+                <p style={{fontSize: "1.6rem",color: "#2D9596"}}>Dark mode:</p>
+                <Switch checked={checked} onChange={onChange} style={{color: "#2D9596"}} />
+              </div>
             </div>
-          </Typography>
-
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography>
         </Box>
       </Modal>
