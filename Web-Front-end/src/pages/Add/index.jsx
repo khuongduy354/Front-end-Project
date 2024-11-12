@@ -1,10 +1,9 @@
-function Add() {
-    return (
-      <div>
-        <h1>ADD</h1>
-        <p>This is the content of the Add interface.</p>
-      </div>
-    );
-  }
+import React, { useState, useEffect } from 'react';
 
-export default Add
+export default function Add() {
+    
+
+    return (
+        
+    );
+}

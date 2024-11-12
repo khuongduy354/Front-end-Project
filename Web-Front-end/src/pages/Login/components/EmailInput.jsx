@@ -9,8 +9,12 @@ function EmailInput({ value, onChange, error }) {
   return (
     <div className="input-container">
       <FormControl variant="outlined" fullWidth error={error}>
-        <InputLabel htmlFor="outlined-email">Email</InputLabel>
+        <InputLabel htmlFor="outlined-email">Email*</InputLabel>
         <OutlinedInput
+          sx={{
+            fontFamily: "Roboto Flex",
+            fontSize: "1.8rem",
+          }}
           sx={{
             fontFamily: "Roboto Flex",
             fontSize: "1.8rem",
@@ -18,14 +22,12 @@ function EmailInput({ value, onChange, error }) {
           type="email"
           id="email"
           label="email"
-          title="email"
-          placeholder="Enter your email"
           value={value}
           onChange={onChange}
           required
         />
         {error && (
-          <FormHelperText sx={{ fontSize: "1.3rem" }}>
+          <FormHelperText sx={{ fontSize: "1.3.3rem" }}>
             Please enter a valid email.
           </FormHelperText>
         )}

@@ -19,7 +19,7 @@ function PasswordInput({ value, onChange }) {
   return (
     <div className="input-container">
       <FormControl variant="outlined" fullWidth>
-        <InputLabel htmlFor="outlined-password">Password</InputLabel>
+        <InputLabel htmlFor="outlined-password">Password*</InputLabel>
         <OutlinedInput
           sx={{
             fontFamily: "Roboto Flex",

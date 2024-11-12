@@ -1,39 +1,61 @@
 import "./App.css";
 import Header from "./components/Header";
 import Workspace from "./pages/Workspace";
-import { Routes, Route, Outlet, Navigate } from "react-router-dom";
-import Add from "./pages/Add";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Calendar from "./pages/Calendar";
-import Progress from "./pages/Progress";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import AppBar from "./pages/Dashboard/Components/Appbar";
 import Meeting from "./pages/Meeting/Meeting";
 import FileManager from "./pages/FileManager/FileManager";
+import TaskOpen from "./pages/Dashboard/Components/TaskOpen";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import LoginForm from "./pages/Login/LoginForm";
 import SignupForm from "./pages/Login/SignupForm";
+import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
+import { useState, useEffect } from "react";
+import ProtectedRoute from "./pages/Login/components/ProtectedRoute";
 
 function App() {
-  const projectName = "Project Name";
-
   const deadline = [
     {
+      img: "../image/img1.jfif",
       isHaveDeadline: true,
       time: "29-10-2024",
       name: "Lap trinh truc quan",
     },
     {
+      img: "../image/img2.jfif",
       isHaveDeadline: true,
       time: "28-10-2024",
       name: "Dennis Robin(1) Dennis Robin(2) Dennis Robin(3)",
     },
     {
+      img: "../image/img4.jfif",
       isHaveDeadline: true,
       time: "01-12-2024",
-      name: "Dennis Robin",
+      name: "Nhập môn mạng",
     },
     {
+      img: "../image/img5.jfif",
       isHaveDeadline: false,
-      name: "Dennis Robin(3)",
+      name: "Trường đại học công nghệ thông tin - Đại học quốc gia thành phố Hồ Chí Minh",
+    },
+    {
+      img: "../image/img5.jfif",
+      isHaveDeadline: false,
+      name: "Khoa Công nghệ phần mềm - Trường đại học công nghệ thông tin",
+    },
+    {
+      img: "../image/img5.jfif",
+      isHaveDeadline: true,
+      time: "01-12-2024",
+      name: "Khoa Hệ thống thông tin - Trường đại học công nghệ thông tin",
+    },
+    {
+      img: "../image/img5.jfif",
+      isHaveDeadline: true,
+      time: "20-11-2024",
+      name: "Khoa Mạng máy tính và truyền thông - Trường đại học công nghệ thông tin",
     },
   ];
   const users = [
@@ -478,43 +500,80 @@ function App() {
     },
   ];
 
-  const ProtectedRoute = () => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    return isLoggedIn ? <Outlet /> : <Navigate to="/login" repalce />;
+  const [toggleDarkMode, setToggleDarkMode] = useState(false);
+  // const tasks = [
+  //   {
+  //     id: 1,
+  //     description: 'doind somthing before this one',
+  //     comments: [],
+  //     members: [],
+  //     deadline: '21/06/2024',
+  //     attaches: [],
+  //     doFollow: false,
+  //   },
+  // ];
+  const toggleDarkTheme = () => {
+    setToggleDarkMode(!toggleDarkMode);
   };
+  const darkTheme = createTheme({
+    palette: {
+      mode: toggleDarkMode ? "dark" : "light",
+      primary: {
+        main: "#2D9596",
+      },
+      secondary: {
+        main: "#131052",
+      },
+    },
+  });
+
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn") === "true"
+  );
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      localStorage.setItem("isLoggedIn", "true");
+    } else {
+      localStorage.setItem("isLoggedIn", "false");
+    }
+
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <>
       <Header />
       <Routes>
+        <Route path="/" element={<Workspace list={deadline} />} />
+        <Route path="/progress" element={<Progress />} />
+        <Route path="/add" element={<Add />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route
+          path="/projectname"
+          element={
+            <>
+              <AppBar projectName={projectName} users={users} />
+              <Dashboard
+                projectName={projectName}
+                boards={boards}
+                files={files}
+              ></Dashboard>
+              <Routes>
+                <Route path="/meeting" element={<Meeting />}></Route>
+                <Route
+                  path="/filemanager"
+                  element={<FileManager files={files} />}
+                ></Route>
+              </Routes>
+            </>
+          }
+        />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<Workspace list={deadline} />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="/add" element={<Add />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route
-            path="/projectname"
-            element={
-              <>
-                <AppBar projectName={projectName} users={users} />
-                <Dashboard
-                  projectName={projectName}
-                  boards={boards}
-                  files={files}
-                ></Dashboard>
-                <Routes>
-                  <Route path="/meeting" element={<Meeting />}></Route>
-                  <Route
-                    path="/filemanager"
-                    element={<FileManager files={files} />}
-                  ></Route>
-                </Routes>
-              </>
-            }
-          />
-        </Route>
       </Routes>
     </>
   );
