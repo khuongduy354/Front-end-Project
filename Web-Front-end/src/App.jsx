@@ -1,18 +1,18 @@
-import "./App.css";
-import Header from "./components/Header";
-import Workspace from "./pages/Workspace";
-import { Routes, Route, Outlet, Navigate } from "react-router-dom";
-import Calendar from "./pages/Calendar";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import AppBar from "./pages/Dashboard/Components/Appbar";
-import Meeting from "./pages/Meeting/Meeting";
-import FileManager from "./pages/FileManager/FileManager";
-import TaskOpen from "./pages/Dashboard/Components/TaskOpen";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import LoginForm from "./pages/Login/LoginForm";
-import SignupForm from "./pages/Login/SignupForm";
-import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
-import { useState } from "react";
+import './App.css';
+import Header from './components/Header';
+import Workspace from './pages/Workspace';
+import { Routes, Route } from 'react-router-dom';
+import Calendar from './pages/Calendar';
+import Dashboard from './pages/Dashboard/Dashboard';
+import AppBar from './pages/Dashboard/Components/Appbar';
+import Meeting from './pages/Meeting/Meeting';
+import FileManager from './pages/FileManager/FileManager';
+import TaskOpen from './pages/Dashboard/Components/TaskOpen';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import LoginForm from './pages/Login/LoginForm';
+import SignupForm from './pages/Login/SignupForm';
+import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { useState } from 'react';
 
 function App() {
   const deadline = [
@@ -516,7 +516,7 @@ function App() {
   };
   const darkTheme = createTheme({
     palette: {
-      mode: toggleDarkMode ? "dark" : "light",
+      mode: toggleDarkMode ? 'dark' : 'light',
       primary: {
         main: "#2D9596",
       },
@@ -533,42 +533,25 @@ function App() {
 
   return (
     <>
-      <Routes>
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignupForm />} />
-      </Routes>
-
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Header checked={toggleDarkMode} onChange={toggleDarkTheme} />
 
         <Routes>
-          <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<Workspace list={deadline} />} />
-            <Route path="/calendar" element={<Calendar />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/signup" element={<SignupForm />} />
+          <Route path="/" element={<Workspace list={deadline} />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/:projectName/*" element={<AppBar users={users} />}>
+            <Route index element={<Dashboard boards={boards} />} />
+            <Route path="meeting" element={<Meeting />}></Route>
             <Route
-              path="/:projectName/*"
-              element={
-                <>
-                  <AppBar users={users} />
-                  <Routes>
-                    <Route
-                      path=""
-                      element={<Dashboard boards={boards}></Dashboard>}
-                    />
-                    <Route path="meeting" element={<Meeting />}></Route>
-                    <Route
-                      path="filemanager"
-                      element={<FileManager files={files} />}
-                    ></Route>
-                    <Route path="/:task" element={<TaskOpen />} />
-                  </Routes>
-                </>
-              }
-            />
-            <Route path="*" element={<NotFoundPage />} />
-            <Route path="/:name" />
+              path="filemanager"
+              element={<FileManager files={files} />}
+            ></Route>
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/:name" />
         </Routes>
       </ThemeProvider>
     </>
