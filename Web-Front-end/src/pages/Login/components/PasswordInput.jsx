@@ -27,8 +27,6 @@ function PasswordInput({ value, onChange }) {
           }}
           type={showPassword ? "text" : "password"}
           id="password"
-          title="password"
-          placeholder="Enter your password"
           value={value}
           onChange={onChange}
           required
