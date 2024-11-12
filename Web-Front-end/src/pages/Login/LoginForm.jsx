@@ -9,7 +9,6 @@ function LoginForm({ onLoginSuccess }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState("");
 
   const validateEmail = (email) => {
