@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import React from "react";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
@@ -11,15 +11,20 @@ function EmailInput({ value, onChange, error }) {
       <FormControl variant="outlined" fullWidth error={error}>
         <InputLabel htmlFor="outlined-email">Email</InputLabel>
         <OutlinedInput
+          sx={{
+            fontFamily: "Roboto Flex",
+            fontSize: "1.8rem",
+          }}
           type="email"
           id="email"
+          label="email"
+          placeholder="Enter your email"
           value={value}
           onChange={onChange}
           required
-          label="Email"
         />
         {error && (
-          <FormHelperText sx={{ fontSize: "1rem" }}>
+          <FormHelperText sx={{ fontSize: "1.3rem" }}>
             Please enter a valid email.
           </FormHelperText>
         )}

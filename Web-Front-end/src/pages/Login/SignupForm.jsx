@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import UsernameInput from "./components/UsernameInput";
@@ -34,6 +34,7 @@ function SignupForm() {
     console.log("Username: ", username);
     console.log("Email: ", email);
     console.log("Password: ", password);
+    localStorage.setItem("isLoggedIn", "true");
     navigate("/");
   };
 

@@ -41,7 +41,7 @@
     margin-bottom: 0.5rem;
     padding: 0.8rem 1.3rem;
     text-align: center;
-    font-size: 1.9rem;
+    font-size: 2rem;
     cursor: pointer;
     font-family: 'Roboto Flex', sans-serif;
 }
@@ -51,7 +51,7 @@
 }
 
 .footer-link {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: #2D9596;
     text-decoration: none;
     font-family: 'Roboto Flex', sans-serif;

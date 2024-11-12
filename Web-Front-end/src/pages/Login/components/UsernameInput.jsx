@@ -10,12 +10,17 @@ function UsernameInput({ value, onChange }) {
       <FormControl variant="outlined" fullWidth>
         <InputLabel htmlFor="outlined-username">Username</InputLabel>
         <OutlinedInput
+          sx={{
+            fontFamily: "Roboto Flex",
+            fontSize: "1.8rem",
+          }}
           type="username"
           id="username"
+          label="username"
+          placeholder="Enter your username"
           value={value}
           onChange={onChange}
           required
-          label="Username"
         />
       </FormControl>
     </div>

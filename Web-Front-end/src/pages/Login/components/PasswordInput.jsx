@@ -21,8 +21,13 @@ function PasswordInput({ value, onChange }) {
       <FormControl variant="outlined" fullWidth>
         <InputLabel htmlFor="outlined-password">Password</InputLabel>
         <OutlinedInput
+          sx={{
+            fontFamily: "Roboto Flex",
+            fontSize: "1.8rem",
+          }}
           type={showPassword ? "text" : "password"}
           id="password"
+          placeholder="Enter your password"
           value={value}
           onChange={onChange}
           required
@@ -35,7 +40,11 @@ function PasswordInput({ value, onChange }) {
                 onClick={handleTogglePasswordVisibility}
                 edge="end"
               >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
+                {showPassword ? (
+                  <VisibilityOff fontSize="large" />
+                ) : (
+                  <Visibility fontSize="large" />
+                )}
               </IconButton>
             </InputAdornment>
           }

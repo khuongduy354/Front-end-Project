@@ -16,7 +16,7 @@ input[type="password"]::-webkit-textfield-decoration-container {
     align-items: center;
     text-align: center;
     margin-bottom: 0.3125rem;
-    font-size: 1.25rem;
+    font-size: 2rem;
     font-family: 'Roboto Flex', sans-serif;
 }
 
