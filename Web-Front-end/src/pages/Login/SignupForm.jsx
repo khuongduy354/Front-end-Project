@@ -6,7 +6,7 @@ import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
 import "./components/form.css";
 
-function SignupForm() {
+function SignupForm({ onLoginSuccess }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -35,6 +35,7 @@ function SignupForm() {
     console.log("Email: ", email);
     console.log("Password: ", password);
     localStorage.setItem("isLoggedIn", "true");
+    onLoginSuccess();
     navigate("/");
   };
 

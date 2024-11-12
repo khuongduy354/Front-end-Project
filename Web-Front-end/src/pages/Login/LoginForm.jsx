@@ -5,7 +5,7 @@ import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
 import "./components/form.css";
 
-function LoginForm() {
+function LoginForm({ onLoginSuccess }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -31,6 +31,7 @@ function LoginForm() {
     console.log("Email: ", email);
     console.log("Password: ", password);
     localStorage.setItem("isLoggedIn", "true");
+    onLoginSuccess(); // Gọi callback để cập nhật trạng thái
     navigate("/");
   };
 
