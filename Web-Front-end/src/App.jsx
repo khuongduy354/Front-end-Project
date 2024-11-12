@@ -538,43 +538,45 @@ function App() {
     } else {
       localStorage.setItem("isLoggedIn", "false");
     }
-
-    if (isLoggedIn) {
-      navigate("/");
-    }
   }, [isLoggedIn, navigate]);
 
   return (
     <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Workspace list={deadline} />} />
-        <Route path="/progress" element={<Progress />} />
-        <Route path="/add" element={<Add />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route
-          path="/projectname"
-          element={
-            <>
-              <AppBar projectName={projectName} users={users} />
-              <Dashboard
-                projectName={projectName}
-                boards={boards}
-                files={files}
-              ></Dashboard>
-              <Routes>
-                <Route path="/meeting" element={<Meeting />}></Route>
+      {!isLoggedIn ? (
+        <Routes>
+          <Route
+            path="/login"
+            element={<LoginForm onLoginSuccess={() => setIsLoggedIn(true)} />}
+          />
+          <Route
+            path="/signup"
+            element={<SignupForm onLoginSuccess={() => setIsLoggedIn(true)} />}
+          />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      ) : (
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <Header checked={toggleDarkMode} onChange={toggleDarkTheme} />
+
+          <Routes>
+            <Route element={<ProtectedRoute />}>
+              <Route path="/" element={<Workspace list={deadline} />} />
+              <Route path="/calendar" element={<Calendar />} />
+              <Route path="/:projectName/*" element={<AppBar users={users} />}>
+                <Route index element={<Dashboard boards={boards} />} />
+                <Route path="meeting" element={<Meeting />}></Route>
                 <Route
-                  path="/filemanager"
+                  path="filemanager"
                   element={<FileManager files={files} />}
                 ></Route>
-              </Routes>
-            </>
-          }
-        />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignupForm />} />
-      </Routes>
+              </Route>
+              <Route path="*" element={<NotFoundPage />} />
+              <Route path="/:name" />
+            </Route>
+          </Routes>
+        </ThemeProvider>
+      )}
     </>
   );
 }
