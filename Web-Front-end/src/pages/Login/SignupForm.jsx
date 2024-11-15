@@ -12,6 +12,7 @@ function SignupForm({ onLoginSuccess }) {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
 
   //Hàm kiểm tra email hợp lệ hay không
   const validateEmail = (email) => {
@@ -19,15 +20,24 @@ function SignupForm({ onLoginSuccess }) {
     return emailRegex.test(email);
   };
 
+  const validatePassword = (password) => {
+    const passwordRegex = /^[A-Za-z0-9!@#$%^&*()_+=-]{10,}$/;
+    return passwordRegex.test(password);
+  };
+
   //Xử lí sự kiện khi nhấn nút Signup
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setEmailError(false);
-
     const isEmailValid = validateEmail(email);
     if (!isEmailValid) {
       setEmailError(true);
+      return;
+    }
+
+    const isPasswordValid = validatePassword(password);
+    if (!isPasswordValid) {
+      setPasswordError(true);
       return;
     }
 
@@ -56,6 +66,7 @@ function SignupForm({ onLoginSuccess }) {
           <PasswordInput
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            error={passwordError}
           />
 
           <div className="button-container">
