@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import UsernameInput from "./components/UsernameInput";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
@@ -21,7 +20,7 @@ function SignupForm({ onLoginSuccess }) {
   };
 
   const validatePassword = (password) => {
-    const passwordRegex = /^[A-Za-z0-9!@#$%^&*()_+=-]{10,}$/;
+    const passwordRegex = /^[A-Za-z0-9!@#$%^&*()_+=-]{7,}$/;
     return passwordRegex.test(password);
   };
 

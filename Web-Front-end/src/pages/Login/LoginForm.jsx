@@ -18,7 +18,7 @@ function LoginForm({ onLoginSuccess }) {
   };
 
   const validatePassword = (password) => {
-    const passwordRegex = /^[A-Za-z0-9!@#$%^&*()_+=-]{10,}$/;
+    const passwordRegex = /^[A-Za-z0-9!@#$%^&*()_+=-]{7,}$/;
     return passwordRegex.test(password);
   };
 
@@ -77,7 +77,7 @@ function LoginForm({ onLoginSuccess }) {
               Create an account
             </Link>
 
-            <Link to="/password" className="footer-link">
+            <Link to="/forgot_password" className="footer-link">
               Forgot Password
             </Link>
           </div>

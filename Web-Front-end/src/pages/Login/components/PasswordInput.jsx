@@ -52,7 +52,7 @@ function PasswordInput({ value, onChange, error }) {
         />
         {error && (
           <FormHelperText sx={{ fontSize: "1.3rem" }}>
-            - Password must have more than 9 characters.
+            - Password must have at least 8 characters.
             <br />
             - Password without spaces or accent marks.
             <br />
