@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
 import "./components/form.css";
+import { UserAPI } from "../../api";
 
 function LoginForm({ onLoginSuccess }) {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function LoginForm({ onLoginSuccess }) {
   };
 
   //Xử lí sự kiện khi nhấn nút Login
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const isEmailValid = validateEmail(email);
@@ -37,12 +38,23 @@ function LoginForm({ onLoginSuccess }) {
       setPasswordError(true);
       return;
     }
+    // DANG NHAP
+    const res = await UserAPI.login({ email, password });
+    if (res.ok) {
+      // Đăng nhập thành công
+      console.log("Email: ", email);
+      console.log("Password: ", password);
 
-    console.log("Email: ", email);
-    console.log("Password: ", password);
-    localStorage.setItem("isLoggedIn", "true");
-    onLoginSuccess(); // Gọi callback để cập nhật trạng thái
-    navigate("/");
+      // Lưu thông tin về phiên đăng nhập
+      // const userData = await res.json();
+      // setJWTToken(userData.token)
+
+      localStorage.setItem("isLoggedIn", "true");
+      onLoginSuccess(); // Gọi callback để cập nhật trạng thái
+      navigate("/");
+    } else {
+      alert("Đăng nhập thất bại");
+    }
   };
 
   return (
